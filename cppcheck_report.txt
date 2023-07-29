@@ -1,0 +1,476 @@
+scripts/config_defs_gen.c:16:5: portability: %ld in format string (no. 1) requires 'long' but the argument type is 'size_t {aka unsigned long}'. [invalidPrintfArgType_sint]
+    printf("#define CONFIG_VCPU_NUM %ld\n", vcpu_num);
+    ^
+src/arch/armv8/aborts.c:37:47: style: Clarify calculation precedence for '&' and '?'. [clarifyCalculation]
+        emul.write = iss & ESR_ISS_DA_WnR_BIT ? true : false;
+                                              ^
+src/arch/armv8/aborts.c:140:47: style: Clarify calculation precedence for '&' and '?'. [clarifyCalculation]
+        emul.write = iss & ESR_ISS_SYSREG_DIR ? false : true;
+                                              ^
+src/arch/armv8/armv8-a/smmuv2.c:165:28: warning: Redundant assignment of 'smmu.hw.glbl_rs0->GFSR' to itself. [selfAssignment]
+    smmu.hw.glbl_rs0->GFSR = smmu.hw.glbl_rs0->GFSR;
+                           ^
+src/arch/armv8/armv8-a/smmuv2.c:166:30: warning: Redundant assignment of 'smmu.hw.glbl_rs0->NSGFSR' to itself. [selfAssignment]
+    smmu.hw.glbl_rs0->NSGFSR = smmu.hw.glbl_rs0->NSGFSR;
+                             ^
+src/arch/armv8/armv8-a/smmuv2.c:133:59: style: Clarify calculation precedence for '&' and '?'. [clarifyCalculation]
+        smmu.hw.glbl_rs0->IDR1 & SMMUV2_IDR1_PAGESIZE_BIT ? 0x10000 : 0x1000;
+                                                          ^
+src/arch/armv8/armv8-r/mpu.c:151:17: style: Variable 'flags.prbar' is assigned a value that is never used. [unreadVariable]
+    flags.prbar &= PRBAR_MEM_ATTR_FLAGS_MSK;
+                ^
+src/arch/armv8/armv8-r/mpu.c:152:17: style: Variable 'flags.prbar' is assigned a value that is never used. [unreadVariable]
+    flags.prbar &= PRLAR_MEM_ATTR_FLAGS_MSK;
+                ^
+src/arch/armv8/asm_defs.c:17:34: error: Null pointer dereference: (struct cpu*)NULL [nullPointer]
+    DEFINE_SIZE(CPU_STACK_SIZE, ((struct cpu*)NULL)->stack);
+                                 ^
+src/arch/armv8/cache.c:23:14: style: The scope of the variable 'temp' can be reduced. [variableScope]
+    uint64_t temp = 0;
+             ^
+src/arch/armv8/cache.c:55:18: style: The scope of the variable 'ctr' can be reduced. [variableScope]
+        uint64_t ctr = 0;
+                 ^
+src/arch/armv8/cache.c:23:19: style: Variable 'temp' is assigned a value that is never used. [unreadVariable]
+    uint64_t temp = 0;
+                  ^
+src/arch/armv8/interrupts.c:35:0: information: Skipping configuration 'GIC_VERSION' since the value of 'GIC_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    if (GIC_VERSION == GICV2) {
+^
+src/arch/armv8/platform.c:17:10: style: The scope of the variable 'found' can be reduced. [variableScope]
+    bool found = false;
+         ^
+src/arch/armv8/vgic.c:499:14: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+    if (pend ^ !!(interrupt->state & PEND)) {
+             ^
+src/arch/armv8/vgic.c:552:13: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+    if (act ^ !!(interrupt->state & ACT)) {
+            ^
+src/arch/armv8/vgic.c:330:18: style: Same expression used in consecutive assignments of 'min_prio_pend' and 'min_prio_act'. [duplicateAssignExpression]
+        unsigned min_prio_pend = interrupt->prio, min_prio_act = interrupt->prio;
+                 ^
+src/arch/armv8/vgic.c:330:51: note: Same expression used in consecutive assignments of 'min_prio_pend' and 'min_prio_act'.
+        unsigned min_prio_pend = interrupt->prio, min_prio_act = interrupt->prio;
+                                                  ^
+src/arch/armv8/vgic.c:330:18: note: Same expression used in consecutive assignments of 'min_prio_pend' and 'min_prio_act'.
+        unsigned min_prio_pend = interrupt->prio, min_prio_act = interrupt->prio;
+                 ^
+src/arch/armv8/vgic.c:331:18: style: Same expression used in consecutive assignments of 'min_id_act' and 'min_id_pend'. [duplicateAssignExpression]
+        unsigned min_id_act = interrupt->id, min_id_pend = interrupt->id;
+                 ^
+src/arch/armv8/vgic.c:331:46: note: Same expression used in consecutive assignments of 'min_id_act' and 'min_id_pend'.
+        unsigned min_id_act = interrupt->id, min_id_pend = interrupt->id;
+                                             ^
+src/arch/armv8/vgic.c:331:18: note: Same expression used in consecutive assignments of 'min_id_act' and 'min_id_pend'.
+        unsigned min_id_act = interrupt->id, min_id_pend = interrupt->id;
+                 ^
+src/arch/riscv/asm_defs.c:18:34: error: Null pointer dereference: (struct cpu*)NULL [nullPointer]
+    DEFINE_SIZE(CPU_STACK_SIZE, ((struct cpu*)NULL)->stack);
+                                 ^
+src/arch/riscv/plic.c:21:34: style: Condition 'plic_global->prio[i]==0' is always false [knownConditionTrueFalse]
+        if (plic_global->prio[i] == 0) {
+                                 ^
+src/arch/riscv/plic.c:20:33: note: Assignment 'plic_global->prio[i]=-1', assigned value is -1
+        plic_global->prio[i] = -1;
+                                ^
+src/arch/riscv/plic.c:21:34: note: Condition 'plic_global->prio[i]==0' is always false
+        if (plic_global->prio[i] == 0) {
+                                 ^
+src/arch/riscv/vm.c:59:14: style: Checking if unsigned expression 'reg' is less than zero. [unsignedLessThanZero]
+    if ((reg <= 0) || (reg > 31)) return 0;
+             ^
+src/arch/riscv/vm.c:65:14: style: Checking if unsigned expression 'reg' is less than zero. [unsignedLessThanZero]
+    if ((reg <= 0) || (reg > 31)) return;
+             ^
+src/core/mem.c:158:46: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                             ^
+src/core/mem.c:17:47: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                                              ^
+src/core/mem.c:158:34: note: Address of variable taken here.
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                 ^
+src/core/mem.c:17:16: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+               ^
+src/core/mem.c:158:48: note: Address of variable taken here.
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                               ^
+src/core/mem.c:158:46: note: Subtracting pointers that point to different objects
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                             ^
+src/core/mem.c:159:52: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mem.c:18:5: note: Variable declared here.
+    _vm_image_end;
+    ^
+src/core/mem.c:159:37: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                    ^
+src/core/mem.c:17:59: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                                                          ^
+src/core/mem.c:159:54: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                     ^
+src/core/mem.c:159:52: note: Subtracting pointers that point to different objects
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mem.c:178:56: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                       ^
+src/core/mem.c:17:30: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                             ^
+src/core/mem.c:178:39: note: Address of variable taken here.
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                      ^
+src/core/mem.c:17:16: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+               ^
+src/core/mem.c:178:58: note: Address of variable taken here.
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                         ^
+src/core/mem.c:178:56: note: Subtracting pointers that point to different objects
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                       ^
+src/core/mem.c:179:53: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                    ^
+src/core/mem.c:17:47: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                                              ^
+src/core/mem.c:179:41: note: Address of variable taken here.
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                        ^
+src/core/mem.c:17:30: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                             ^
+src/core/mem.c:179:55: note: Address of variable taken here.
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                      ^
+src/core/mem.c:179:53: note: Subtracting pointers that point to different objects
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                    ^
+src/core/mem.c:180:52: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mem.c:18:5: note: Variable declared here.
+    _vm_image_end;
+    ^
+src/core/mem.c:180:37: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                    ^
+src/core/mem.c:17:59: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                                                          ^
+src/core/mem.c:180:54: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                     ^
+src/core/mem.c:180:52: note: Subtracting pointers that point to different objects
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mem.c:343:46: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                             ^
+src/core/mem.c:17:47: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+                                              ^
+src/core/mem.c:343:34: note: Address of variable taken here.
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                 ^
+src/core/mem.c:17:16: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _vm_image_start,
+               ^
+src/core/mem.c:343:48: note: Address of variable taken here.
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                               ^
+src/core/mem.c:343:46: note: Subtracting pointers that point to different objects
+    size_t image_size = (size_t)(&_image_end - &_image_start);
+                                             ^
+src/core/mmu/mem.c:821:28: style:inconclusive: Boolean expression 'va!=(vaddr_t)' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+        if (va != (vaddr_t)&_image_start)
+                           ^
+src/core/mmu/mem.c:821:28: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+        if (va != (vaddr_t)&_image_start)
+                           ^
+src/core/mmu/mem.c:319:12: style: The scope of the variable 'entry' can be reduced. [variableScope]
+    size_t entry = 0;
+           ^
+src/core/mmu/mem.c:320:12: style: The scope of the variable 'nentries' can be reduced. [variableScope]
+    size_t nentries = 0;
+           ^
+src/core/mmu/mem.c:321:12: style: The scope of the variable 'lvlsze' can be reduced. [variableScope]
+    size_t lvlsze = 0;
+           ^
+src/core/mmu/mem.c:492:12: style: The scope of the variable 'count' can be reduced. [variableScope]
+    size_t count = 0;
+           ^
+src/core/mmu/mem.c:154:25: style: Local variable 'i' shadows outer variable [shadowVariable]
+            for (size_t i = 0; i < n; i++) {
+                        ^
+src/core/mmu/mem.c:122:17: note: Shadowed declaration
+    for (size_t i = 0; i < 2 && !ok; i++) {
+                ^
+src/core/mmu/mem.c:154:25: note: Shadow variable
+            for (size_t i = 0; i < n; i++) {
+                        ^
+src/core/mmu/mem.c:400:16: style: Local variable 'lvl' shadows outer variable [shadowVariable]
+        size_t lvl = 0;
+               ^
+src/core/mmu/mem.c:318:12: note: Shadowed declaration
+    size_t lvl = 0;
+           ^
+src/core/mmu/mem.c:400:16: note: Shadow variable
+        size_t lvl = 0;
+               ^
+src/core/mmu/mem.c:756:56: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                       ^
+src/core/mmu/mem.c:19:30: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _dmem_phys_beg,
+                             ^
+src/core/mmu/mem.c:756:39: note: Address of variable taken here.
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                      ^
+src/core/mmu/mem.c:19:16: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _dmem_phys_beg,
+               ^
+src/core/mmu/mem.c:756:58: note: Address of variable taken here.
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                         ^
+src/core/mmu/mem.c:756:56: note: Subtracting pointers that point to different objects
+    size_t image_load_size = (size_t)(&_image_load_end - &_image_start);
+                                                       ^
+src/core/mmu/mem.c:757:53: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                    ^
+src/core/mmu/mem.c:19:47: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _dmem_phys_beg,
+                                              ^
+src/core/mmu/mem.c:757:41: note: Address of variable taken here.
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                        ^
+src/core/mmu/mem.c:19:30: note: Variable declared here.
+extern uint8_t _image_start, _image_load_end, _image_end, _dmem_phys_beg,
+                             ^
+src/core/mmu/mem.c:757:55: note: Address of variable taken here.
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                      ^
+src/core/mmu/mem.c:757:53: note: Subtracting pointers that point to different objects
+    size_t image_noload_size = (size_t)(&_image_end - &_image_load_end);
+                                                    ^
+src/core/mmu/mem.c:759:52: error: Subtracting pointers that point to different objects [comparePointers]
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mmu/mem.c:21:23: note: Variable declared here.
+     _vm_image_start, _vm_image_end;
+                      ^
+src/core/mmu/mem.c:759:37: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                    ^
+src/core/mmu/mem.c:21:6: note: Variable declared here.
+     _vm_image_start, _vm_image_end;
+     ^
+src/core/mmu/mem.c:759:54: note: Address of variable taken here.
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                     ^
+src/core/mmu/mem.c:759:52: note: Subtracting pointers that point to different objects
+    size_t vm_image_size = (size_t)(&_vm_image_end - &_vm_image_start);
+                                                   ^
+src/core/mmu/mem.c:319:18: style: Variable 'entry' is assigned a value that is never used. [unreadVariable]
+    size_t entry = 0;
+                 ^
+src/core/mmu/mem.c:320:21: style: Variable 'nentries' is assigned a value that is never used. [unreadVariable]
+    size_t nentries = 0;
+                    ^
+src/core/mmu/mem.c:321:19: style: Variable 'lvlsze' is assigned a value that is never used. [unreadVariable]
+    size_t lvlsze = 0;
+                  ^
+src/core/mmu/mem.c:400:20: style: Variable 'lvl' is assigned a value that is never used. [unreadVariable]
+        size_t lvl = 0;
+                   ^
+src/core/mpu/mem.c:177:9: style: Variable 'mpid' is assigned a value that is never used. [unreadVariable]
+    mpid++;
+        ^
+src/lib/bitmap.c:61:13: style: The scope of the variable 'count' can be reduced. [variableScope]
+    ssize_t count = 0;
+            ^
+src/lib/bitmap.c:11:14: style: Checking if unsigned expression 'size' is less than zero. [unsignedLessThanZero]
+    if (size <= 0 || nth <= 0 || start < 0) return -1;
+             ^
+src/lib/bitmap.c:11:26: style: Checking if unsigned expression 'nth' is less than zero. [unsignedLessThanZero]
+    if (size <= 0 || nth <= 0 || start < 0) return -1;
+                         ^
+src/lib/bitmap.c:11:40: style: Checking if unsigned expression 'start' is less than zero. [unsignedLessThanZero]
+    if (size <= 0 || nth <= 0 || start < 0) return -1;
+                                       ^
+src/lib/bitmap.c:61:19: style: Variable 'count' is assigned a value that is never used. [unreadVariable]
+    ssize_t count = 0;
+                  ^
+src/lib/printk.c:46:29: style: The scope of the variable 'byte' can be reduced. [variableScope]
+                    uint8_t byte = 0;
+                            ^
+src/lib/printk.c:71:31: style: The scope of the variable 'j' can be reduced. [variableScope]
+                    size_t i, j, max_num_zeros, num_of_digits_uint64_t,
+                              ^
+src/lib/printk.c:57:39: style: Unsigned expression 'byte' can't be negative so it is unnecessary to test it. [unsignedPositive]
+                            if ((byte >= 0) && (byte <= 9)) {
+                                      ^
+src/platform/drivers/zynq_uart/zynq_uart.c:61:9: style: Assignment of function parameter has no effect outside the function. [uselessAssignmentArg]
+        baud_rate = UART_BAUD_RATE;
+        ^
+src/platform/drivers/zynq_uart/zynq_uart.c:95:29: style:inconclusive: Boolean expression '!uart->ch_status' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+    while (!uart->ch_status & UART_CH_STATUS_RTRIG);
+                            ^
+src/platform/drivers/zynq_uart/zynq_uart.c:95:29: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+    while (!uart->ch_status & UART_CH_STATUS_RTRIG);
+                            ^
+src/platform/drivers/zynq_uart/zynq_uart.c:38:14: style: Redundant initialization for 'ctrl_reg'. The initialized value is overwritten before it is read. [redundantInitialization]
+    ctrl_reg = (UART_CONTROL_STPBRK | UART_CONTROL_TXEN | UART_CONTROL_RXEN |
+             ^
+src/platform/drivers/zynq_uart/zynq_uart.c:36:23: note: ctrl_reg is initialized
+    uint32_t ctrl_reg = uart->control;
+                      ^
+src/platform/drivers/zynq_uart/zynq_uart.c:38:14: note: ctrl_reg is overwritten
+    ctrl_reg = (UART_CONTROL_STPBRK | UART_CONTROL_TXEN | UART_CONTROL_RXEN |
+             ^
+src/platform/drivers/zynq_uart/zynq_uart.c:48:14: style: Redundant initialization for 'ctrl_reg'. The initialized value is overwritten before it is read. [redundantInitialization]
+    ctrl_reg = (UART_CONTROL_STPBRK | UART_CONTROL_TXDIS | UART_CONTROL_RXDIS);
+             ^
+src/platform/drivers/zynq_uart/zynq_uart.c:46:23: note: ctrl_reg is initialized
+    uint32_t ctrl_reg = uart->control;
+                      ^
+src/platform/drivers/zynq_uart/zynq_uart.c:48:14: note: ctrl_reg is overwritten
+    ctrl_reg = (UART_CONTROL_STPBRK | UART_CONTROL_TXDIS | UART_CONTROL_RXDIS);
+             ^
+src/platform/drivers/zynq_uart/zynq_uart.c:61:19: style: Variable 'baud_rate' is assigned a value that is never used. [unreadVariable]
+        baud_rate = UART_BAUD_RATE;
+                  ^
+src/arch/armv8/aborts.c:168:0: style: The function 'aborts_sync_handler' is never used. [unusedFunction]
+
+^
+src/arch/armv8/asm_defs.c:12:0: style: The function 'cpu_defines' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gicv2.c:186:0: style: The function 'gic_get_act' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gicv2.c:176:0: style: The function 'gic_get_pend' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gicv2.c:166:0: style: The function 'gic_get_prio' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gic.c:95:0: style: The function 'gic_handle' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gic.c:77:0: style: The function 'gic_init' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gicv2.c:128:0: style: The function 'gic_send_sgi' is never used. [unusedFunction]
+
+^
+src/arch/armv8/gicv2.c:196:0: style: The function 'gic_set_pend' is never used. [unusedFunction]
+
+^
+src/core/init.c:16:0: style: The function 'init' is never used. [unusedFunction]
+
+^
+src/arch/armv8/aarch32/aborts.c:10:0: style: The function 'internal_abort_handler' is never used. [unusedFunction]
+
+^
+src/arch/riscv/interrupts.c:49:0: style: The function 'interrupts_arch_cpu_enable' is never used. [unusedFunction]
+
+^
+src/arch/riscv/interrupts.c:76:0: style: The function 'interrupts_arch_handle' is never used. [unusedFunction]
+
+^
+src/core/mem.c:108:0: style: The function 'mem_are_ppages_reserved' is never used. [unusedFunction]
+
+^
+src/arch/armv8/armv8-r/mpu.c:169:0: style: The function 'mem_region_get_overlap' is never used. [unusedFunction]
+
+^
+src/core/objpool.c:9:0: style: The function 'objpool_init' is never used. [unusedFunction]
+
+^
+src/arch/armv8/asm_defs.c:31:0: style: The function 'platform_defines' is never used. [unusedFunction]
+
+^
+src/arch/riscv/plic.c:71:0: style: The function 'plic_get_enbl' is never used. [unusedFunction]
+
+^
+src/arch/riscv/plic.c:89:0: style: The function 'plic_get_prio' is never used. [unusedFunction]
+
+^
+src/arch/riscv/plic.c:115:0: style: The function 'plic_get_threshold' is never used. [unusedFunction]
+
+^
+src/arch/armv8/armv8-a/psci.c:75:0: style: The function 'psci_wake' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:81:0: style: The function 'sbi_get_impl_id' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:85:0: style: The function 'sbi_get_impl_version' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:99:0: style: The function 'sbi_get_marchid' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:103:0: style: The function 'sbi_get_mimpid' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:95:0: style: The function 'sbi_get_mvendorid' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:188:0: style: The function 'sbi_hart_status' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:182:0: style: The function 'sbi_hart_stop' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:137:0: style: The function 'sbi_remote_hfence_gvma' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:146:0: style: The function 'sbi_remote_hfence_gvma_vmid' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sbi.c:128:0: style: The function 'sbi_remote_sfence_vma' is never used. [unusedFunction]
+
+^
+src/lib/string.c:49:0: style: The function 'strcat' is never used. [unusedFunction]
+
+^
+src/lib/string.c:88:0: style: The function 'strcmp' is never used. [unusedFunction]
+
+^
+src/lib/string.c:78:0: style: The function 'strcpy' is never used. [unusedFunction]
+
+^
+src/lib/string.c:59:0: style: The function 'strlen' is never used. [unusedFunction]
+
+^
+src/arch/riscv/sync_exceptions.c:144:0: style: The function 'sync_exception_handler' is never used. [unusedFunction]
+
+^
+src/platform/drivers/pl011_uart/pl011_uart.c:9:0: style: The function 'uart_disable' is never used. [unusedFunction]
+
+^
+src/platform/drivers/pl011_uart/pl011_uart.c:93:0: style: The function 'uart_getc' is never used. [unusedFunction]
+
+^
+src/arch/armv8/asm_defs.c:23:0: style: The function 'vcpu_defines' is never used. [unusedFunction]
+
+^
+src/arch/armv8/vgic.c:1127:0: style: The function 'vgic_set_hw' is never used. [unusedFunction]
+
+^
+src/arch/riscv/vplic.c:220:0: style: The function 'vplic_inject' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+
